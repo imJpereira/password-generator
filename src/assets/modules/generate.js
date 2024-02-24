@@ -1,12 +1,6 @@
-const numbers = "0123456789";
-const alphabetLower = "abcdefghijklmnopqrstuvwxyz";
-const alhpaberUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const symbols = "!@#$%&*-_"
+import {numbers, alphabetLower, alhpaberUpper, symbols, isChecked, rand} from "./elements"
 
-const charactersInput = document.getElementById('number-of-characters');
-const button = document.getElementById("generate-password");
-
-button.addEventListener('click', () => {
+export default function createNewPassword() {
     const charactersInput = document.getElementById('number-of-characters');
     const numbersInput = document.getElementById('numbers');
     const upperCaseInput = document.getElementById('uppercase');
@@ -15,6 +9,10 @@ button.addEventListener('click', () => {
 
     const pick = [];
     const password = [];
+
+    if (charactersInput.value > 16) {
+        charactersInput.value = 15;
+    } 
 
     if(isChecked(numbersInput)) {
         pick.push(numbers);
@@ -28,6 +26,8 @@ button.addEventListener('click', () => {
     if(isChecked(symbolsInput)) {
         pick.push(symbols);
     }
+
+    if (pick.length === 0) return;
     
     for (let i = 0; i <= charactersInput.value - 1; i++) {
         //select random group in array
@@ -40,15 +40,5 @@ button.addEventListener('click', () => {
 
         password.push(passwordDigit);
     }
-
-    console.log(password.join(''));
-
-})
-
-function isChecked(element) {
-    return element.checked;
-}
-
-function rand(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
+    return password.join('');
 }
