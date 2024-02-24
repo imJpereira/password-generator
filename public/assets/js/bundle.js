@@ -2,6 +2,86 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/assets/modules/elements.js":
+/*!****************************************!*\
+  !*** ./src/assets/modules/elements.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   alhpaberUpper: () => (/* binding */ alhpaberUpper),
+/* harmony export */   alphabetLower: () => (/* binding */ alphabetLower),
+/* harmony export */   isChecked: () => (/* binding */ isChecked),
+/* harmony export */   numbers: () => (/* binding */ numbers),
+/* harmony export */   rand: () => (/* binding */ rand),
+/* harmony export */   symbols: () => (/* binding */ symbols)
+/* harmony export */ });
+var numbers = "0123456789";
+var alphabetLower = "abcdefghijklmnopqrstuvwxyz";
+var alhpaberUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var symbols = "!@#$%&*-_";
+function isChecked(element) {
+  return element.checked;
+}
+function rand(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+
+/***/ }),
+
+/***/ "./src/assets/modules/generate.js":
+/*!****************************************!*\
+  !*** ./src/assets/modules/generate.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ createNewPassword)
+/* harmony export */ });
+/* harmony import */ var _elements__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./elements */ "./src/assets/modules/elements.js");
+
+function createNewPassword() {
+  var charactersInput = document.getElementById('number-of-characters');
+  var numbersInput = document.getElementById('numbers');
+  var upperCaseInput = document.getElementById('uppercase');
+  var lowerCaseInput = document.getElementById('lowercase');
+  var symbolsInput = document.getElementById('symbols');
+  var pick = [];
+  var password = [];
+  if (charactersInput.value > 16) {
+    charactersInput.value = 15;
+  }
+  if ((0,_elements__WEBPACK_IMPORTED_MODULE_0__.isChecked)(numbersInput)) {
+    pick.push(_elements__WEBPACK_IMPORTED_MODULE_0__.numbers);
+  }
+  if ((0,_elements__WEBPACK_IMPORTED_MODULE_0__.isChecked)(upperCaseInput)) {
+    pick.push(_elements__WEBPACK_IMPORTED_MODULE_0__.alhpaberUpper);
+  }
+  if ((0,_elements__WEBPACK_IMPORTED_MODULE_0__.isChecked)(lowerCaseInput)) {
+    pick.push(_elements__WEBPACK_IMPORTED_MODULE_0__.alphabetLower);
+  }
+  if ((0,_elements__WEBPACK_IMPORTED_MODULE_0__.isChecked)(symbolsInput)) {
+    pick.push(_elements__WEBPACK_IMPORTED_MODULE_0__.symbols);
+  }
+  if (pick.length === 0) return;
+  for (var i = 0; i <= charactersInput.value - 1; i++) {
+    //select random group in array
+    var randomNumber = (0,_elements__WEBPACK_IMPORTED_MODULE_0__.rand)(0, pick.length);
+    var pickedGroup = pick[randomNumber];
+
+    //select random element in array
+    randomNumber = (0,_elements__WEBPACK_IMPORTED_MODULE_0__.rand)(0, pickedGroup.length);
+    var passwordDigit = pickedGroup[randomNumber];
+    password.push(passwordDigit);
+  }
+  return password.join('');
+}
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/assets/css/styles.css":
 /*!*************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/assets/css/styles.css ***!
@@ -64,7 +144,7 @@ body {
     }
 }
 
-.password-generator-form h2 {
+.headling2 {
     color: rgb(112, 45, 175);
     font-size: 45px;
     margin-bottom: 30px;
@@ -88,12 +168,7 @@ body {
 input {
     width: 20px;
     height: 20px;
-}
-
-#symbols:checked {
-    color: red;
-}
-`, "",{"version":3,"sources":["webpack://./src/assets/css/styles.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,uBAAuB;IACvB,kCAAkC;KACjC,yBAAyB;IAC1B,gBAAgB;IAChB,kBAAkB;IAClB;cACU;AACd;;AAEA;IACI,gBAAgB;IAChB,eAAe;AACnB;;AAEA;IACI,aAAa;IACb,mBAAmB;IACnB,uBAAuB;IACvB,aAAa;IACb,mCAAmC;IACnC,sBAAsB;AAC1B;;AAEA;IACI,sBAAsB;IACtB,YAAY;IACZ,kBAAkB;IAClB,mBAAmB;AACvB;;AAEA;IACI,aAAa;IACb,sBAAsB;IACtB,cAAc;IACd,eAAe;;IAEf;QACI,cAAc;IAClB;AACJ;;AAEA;IACI,wBAAwB;IACxB,eAAe;IACf,mBAAmB;AACvB;;AAEA;IACI,WAAW;AACf;;AAEA;IACI,eAAe;IACf,YAAY;IACZ,mBAAmB;IACnB,kBAAkB;IAClB,sBAAsB;IACtB;QACI,sBAAsB;IAC1B;AACJ;;AAEA;IACI,WAAW;IACX,YAAY;AAChB;;AAEA;IACI,UAAU;AACd","sourcesContent":["* {\r\n    margin: 0;\r\n    font-family: sans-serif;\r\n    font-family: \"Fredoka\", sans-serif;\r\n     font-optical-sizing: auto;\r\n    font-weight: 400;\r\n    font-style: normal;\r\n    font-variation-settings:\r\n    \"wdth\" 100;\r\n}\r\n\r\nh1 {\r\n    font-weight: 600;\r\n    font-size: 28px;\r\n}\r\n\r\nbody {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    height: 100vh;\r\n    background-color: rgb(112, 45, 175);\r\n    box-sizing: border-box;\r\n}\r\n\r\n.main__container {\r\n    background-color: #fff;\r\n    width: 500px;\r\n    padding: 10px 20px;\r\n    border-radius: 20px;\r\n}\r\n\r\n.password-generator-form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    margin: 30px 0;\r\n    font-size: 20px;\r\n\r\n    & div {\r\n        padding: 8px 0;\r\n    }\r\n}\r\n\r\n.password-generator-form h2 {\r\n    color: rgb(112, 45, 175);\r\n    font-size: 45px;\r\n    margin-bottom: 30px;\r\n}\r\n\r\n#number-of-characters {\r\n    width: 40px;\r\n}\r\n\r\n#generate-password {\r\n    font-size: 20px;\r\n    padding: 5px;\r\n    margin-bottom: 10px;\r\n    border-radius: 5px;\r\n    border: 1px solid #000;\r\n    &:hover{\r\n        transform: scale(1.02);\r\n    }\r\n}\r\n\r\ninput {\r\n    width: 20px;\r\n    height: 20px;\r\n}\r\n\r\n#symbols:checked {\r\n    color: red;\r\n}\r\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/assets/css/styles.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,uBAAuB;IACvB,kCAAkC;KACjC,yBAAyB;IAC1B,gBAAgB;IAChB,kBAAkB;IAClB;cACU;AACd;;AAEA;IACI,gBAAgB;IAChB,eAAe;AACnB;;AAEA;IACI,aAAa;IACb,mBAAmB;IACnB,uBAAuB;IACvB,aAAa;IACb,mCAAmC;IACnC,sBAAsB;AAC1B;;AAEA;IACI,sBAAsB;IACtB,YAAY;IACZ,kBAAkB;IAClB,mBAAmB;AACvB;;AAEA;IACI,aAAa;IACb,sBAAsB;IACtB,cAAc;IACd,eAAe;;IAEf;QACI,cAAc;IAClB;AACJ;;AAEA;IACI,wBAAwB;IACxB,eAAe;IACf,mBAAmB;AACvB;;AAEA;IACI,WAAW;AACf;;AAEA;IACI,eAAe;IACf,YAAY;IACZ,mBAAmB;IACnB,kBAAkB;IAClB,sBAAsB;IACtB;QACI,sBAAsB;IAC1B;AACJ;;AAEA;IACI,WAAW;IACX,YAAY;AAChB","sourcesContent":["* {\r\n    margin: 0;\r\n    font-family: sans-serif;\r\n    font-family: \"Fredoka\", sans-serif;\r\n     font-optical-sizing: auto;\r\n    font-weight: 400;\r\n    font-style: normal;\r\n    font-variation-settings:\r\n    \"wdth\" 100;\r\n}\r\n\r\nh1 {\r\n    font-weight: 600;\r\n    font-size: 28px;\r\n}\r\n\r\nbody {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    height: 100vh;\r\n    background-color: rgb(112, 45, 175);\r\n    box-sizing: border-box;\r\n}\r\n\r\n.main__container {\r\n    background-color: #fff;\r\n    width: 500px;\r\n    padding: 10px 20px;\r\n    border-radius: 20px;\r\n}\r\n\r\n.password-generator-form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    margin: 30px 0;\r\n    font-size: 20px;\r\n\r\n    & div {\r\n        padding: 8px 0;\r\n    }\r\n}\r\n\r\n.headling2 {\r\n    color: rgb(112, 45, 175);\r\n    font-size: 45px;\r\n    margin-bottom: 30px;\r\n}\r\n\r\n#number-of-characters {\r\n    width: 40px;\r\n}\r\n\r\n#generate-password {\r\n    font-size: 20px;\r\n    padding: 5px;\r\n    margin-bottom: 10px;\r\n    border-radius: 5px;\r\n    border: 1px solid #000;\r\n    &:hover{\r\n        transform: scale(1.02);\r\n    }\r\n}\r\n\r\ninput {\r\n    width: 20px;\r\n    height: 20px;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -620,8 +695,18 @@ var __webpack_exports__ = {};
   !*** ./src/main.js ***!
   \*********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _assets_css_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/styles.css */ "./src/assets/css/styles.css");
+/* harmony import */ var _assets_modules_generate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/modules/generate */ "./src/assets/modules/generate.js");
+/* harmony import */ var _assets_css_styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/css/styles.css */ "./src/assets/css/styles.css");
 
+
+var button = document.getElementById("generate-password");
+button.addEventListener('click', function () {
+  var headling2 = document.querySelector(".headling2");
+  var newPassword = (0,_assets_modules_generate__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  if (newPassword !== undefined) {
+    headling2.innerText = newPassword;
+  }
+});
 })();
 
 /******/ })()
