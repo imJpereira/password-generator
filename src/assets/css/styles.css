@@ -66,7 +66,3 @@ input {
     width: 20px;
     height: 20px;
 }
-
-#symbols:checked {
-    color: red;
-}
