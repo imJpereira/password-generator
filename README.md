@@ -11,7 +11,7 @@ Welcome to the Random Password Generator project! This tool is designed to provi
 ## Getting Started
 
 1. **Accessing the Site:**
-   Visit [passmastermind](https://securekeyforge.example.com) to access the password generation site.
+   Visit [passmastermind](https://passmastermind.netlify.app/) to access the password generation site.
   
 2. **Set Maximum Character Limit:**
    Specify the maximum number of characters you want for your password.
