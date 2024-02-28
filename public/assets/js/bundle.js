@@ -50,8 +50,8 @@ function createNewPassword() {
   var lowerCaseInput = document.getElementById('lowercase');
   var symbolsInput = document.getElementById('symbols');
   var pick = [];
-  var password = [];
-  if (charactersInput.value > 16) {
+  var password = '';
+  if (charactersInput.value >= 16) {
     charactersInput.value = 15;
   }
   if ((0,_elements__WEBPACK_IMPORTED_MODULE_0__.isChecked)(numbersInput)) {
@@ -75,9 +75,9 @@ function createNewPassword() {
     //select random element in array
     randomNumber = (0,_elements__WEBPACK_IMPORTED_MODULE_0__.rand)(0, pickedGroup.length);
     var passwordDigit = pickedGroup[randomNumber];
-    password.push(passwordDigit);
+    password += passwordDigit;
   }
-  return password.join('');
+  return password;
 }
 
 /***/ }),

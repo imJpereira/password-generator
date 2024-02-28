@@ -8,9 +8,9 @@ export default function createNewPassword() {
     const symbolsInput = document.getElementById('symbols');
 
     const pick = [];
-    const password = [];
+    let password = ''
 
-    if (charactersInput.value > 16) {
+    if (charactersInput.value >= 16) {
         charactersInput.value = 15;
     } 
 
@@ -38,7 +38,7 @@ export default function createNewPassword() {
         randomNumber = rand(0, pickedGroup.length);
         const passwordDigit = pickedGroup[randomNumber];
 
-        password.push(passwordDigit);
+        password += passwordDigit
     }
-    return password.join('');
+    return password;
 }
